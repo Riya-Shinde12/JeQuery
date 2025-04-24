@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>  Gallery</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    .gallery-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-filter {
+      margin: 0 5px 15px 5px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container my-5">
+  <h2 class="text-center mb-4"> Gallery </h2>
+
+  <!-- Filter Buttons -->
+  <div class="text-center mb-4">
+    <button class="btn btn-primary btn-filter" data-filter="all">All</button>
+    <button class="btn btn-secondary btn-filter" data-filter="nature">Nature</button>
+    <button class="btn btn-secondary btn-filter" data-filter="city">City</button>
+    <button class="btn btn-secondary btn-filter" data-filter="animals">Animals</button>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="row" id="gallery">
+    <!-- Image Item -->
+    <div class="col-md-4 mb-4 gallery-item" data-category="nature">
+      <img src="https://media.istockphoto.com/id/1403500817/photo/the-craggies-in-the-blue-ridge-mountains.jpg?s=612x612&w=0&k=20&c=N-pGA8OClRVDzRfj_9AqANnOaDS3devZWwrQNwZuDSk=" class="gallery-img" />
+    </div>
+    <div class="col-md-4 mb-4 gallery-item" data-category="city">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh73Vd1HRtk6R1cTErriyl0p_tiLx0nATMtw&s" class="gallery-img" />
+    </div>
+    <div class="col-md-4 mb-4 gallery-item" data-category="animals">
+      <img src="https://media.istockphoto.com/id/520839324/photo/wild-elephant.jpg?s=612x612&w=0&k=20&c=jnDbuC5oqdaH_OCVsBGa19A5sCx7EVKj94DdVA6Xe0g=" class="gallery-img" />
+    </div>
+    <div class="col-md-4 mb-4 gallery-item" data-category="nature">
+      <img src="https://images.pexels.com/photos/158063/bellingrath-gardens-alabama-landscape-scenic-158063.jpeg?cs=srgb&dl=pexels-pixabay-158063.jpg&fm=jpg" class="gallery-img" />
+    </div>
+    <div class="col-md-4 mb-4 gallery-item" data-category="city">
+      <img src="https://watermark.lovepik.com/photo/20211120/large/lovepik-city-night-scene-picture_500359293.jpg" class="gallery-img" />
+    </div>
+    <div class="col-md-4 mb-4 gallery-item" data-category="animals">
+      <img src="https://d1jyxxz9imt9yb.cloudfront.net/medialib/4350/image/s768x1300/AdobeStock_123823873_433578_reduced.jpg" class="gallery-img" />
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $(".btn-filter").click(function () {
+      const filter = $(this).data("filter");
+
+      $(".btn-filter").removeClass("btn-primary").addClass("btn-secondary");
+      $(this).removeClass("btn-secondary").addClass("btn-primary");
+
+      if (filter === "all") {
+        $(".gallery-item").fadeIn();
+      } else {
+        $(".gallery-item").each(function () {
+          if ($(this).data("category") === filter) {
+            $(this).fadeIn();
+          } else {
+            $(this).fadeOut();
+          }
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
